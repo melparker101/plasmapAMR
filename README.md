@@ -1,5 +1,5 @@
 
-# plasmapAMR
+# plasmapR
 
 <!-- badges: start -->
 
