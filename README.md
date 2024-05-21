@@ -10,7 +10,7 @@ coverage](https://codecov.io/gh/bradyajohnston/plasmapR/branch/main/graph/badge.
 
 This is an R package for making plasmid maps using `{ggplot2}`.
 
-This repo is forked from bradyajohnston/plasmapr and edited to visualise AMR genes on plasmisds. It is my first time releasing a package so is experimental and only involves a few small tweeks. It still needs more work.
+This repo is forked from bradyajohnston/plasmapr and edited to visualise AMR genes on plasmids. It is my first time releasing a package so is experimental and only involves a few small tweeks. It still needs more work.
 
 ## Installation
 
