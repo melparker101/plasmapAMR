@@ -132,7 +132,7 @@ StatArrowLabel <- ggplot2::ggproto('StatArrowLabel', StatArrow,
   compute_group = function(data,
                            scales,
                            bp = 6000,
-                           invert = TRUE) {
+                           invert = FALSE) {
     # data$length <- data$end - data$start
 
 
@@ -145,7 +145,8 @@ StatArrowLabel <- ggplot2::ggproto('StatArrowLabel', StatArrow,
       xmax = data$end
     )
 
-  fil <- data$length / bp > nchar(data$label) / bp * 60
+  #fil <- data$length / bp > nchar(data$label) / bp * 60
+  fil <- TRUE
 
   if (invert) fil <- !fil
   # if (! invert) df <- df[, c("y", "xmin", "xmax")]

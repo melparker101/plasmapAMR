@@ -1,5 +1,5 @@
 
-# plasmapR
+# plasmapAMR
 
 <!-- badges: start -->
 
@@ -10,17 +10,29 @@ coverage](https://codecov.io/gh/bradyajohnston/plasmapR/branch/main/graph/badge.
 
 This is an R package for making plasmid maps using `{ggplot2}`.
 
+This repo is forked from bradyajohnston/plasmapr and edited to visualise AMR genes on plasmids. It is my first time releasing a package so is experimental and only involves a few small tweeks. It still needs more work.
+
 ## Installation
 
 > This package is still very early in development and the API may
 > change. The parser for `.gb` files works most of the time but has not
 > been tested extensively.
 
+For the original package:
 ``` r
 # install.packages("devtools")
 devtools::install_github("bradyajohnston/plasmapr")
 ```
 
+For the new AMR gene package:
+``` r
+# install.packages("devtools")
+devtools::install_github("melparker101/plasmapamr", ref = "ctx-m_plasmids")
+```
+Conda package in progress...
+
+
+The code below is for the original package: 
 ## Example
 
 `plasmapR` provides functions for parsing and plotting .gb plasmid

@@ -1,17 +1,19 @@
-Package: plasmapR
-Title: Create Plasmid Maps in R
+Package: plasmapAMR
+Title: Create Plasmid Maps in R to visualise AMR genes
 Type: Package
-Version: 0.3.1
+Version: 0.1.1
 Authors@R:
     person(given = "Brady", 
            family = "Johnston", 
            role = c("aut", "cre"),
            email = "brady.johnston@me.com",
            comment = c(ORCID = "0000-0001-6301-2269"))
-Maintainer: Brady Johnston <brady.johnston@research.uwa.edu.au>
+Maintainer: Melody Parker <melodyjparker14@gmail.com>
+Contributors: Melody Parker <melodyjparker14@gmail.com>: Edited code for ARG plotting.
 Description: Create circular plasmid maps as ggplot objects. Allows for parsing
     of .gb files and the creation of plasmid maps. Features allowing for 
-    customisation of aesthetics, like regular ggplot plots.
+    customisation of aesthetics, like regular ggplot plots. This fork allows for 
+    the plotting of genes as well as other features. All labels are outside of the arrows.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -33,6 +35,6 @@ Suggests:
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Depends: R (>= 2.10)
-URL: https::/github.com/bradyajohnston/plasmapr
-BugReports: https://github.com/bradyajohnston/plasmapr/issues
+URL: https://github.com/melparker101/plasmapAMR/tree/ctx-m_plasmids
+BugReports: https://github.com/melodyparker101/plasmapAMR/tree/ctx-m_plasmids/issues
 Config/testthat/edition: 3

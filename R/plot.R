@@ -1,17 +1,22 @@
+# Changes make:
+# - able to plot genes too now
+# - Tried to add all labels outside of plot - in progress
+
 
 #' @importFrom rlang .data
 #' @noRd
 .plot_plasmid <- function(dat, bp, name = "Plasmid Name", label_wrap = 20) {
   dat <- dat[dat$type != "source", ]
-
+  
   name_supplied <- !is.null(name) & name != ""
-
+  
   if (name_supplied) {
     yintercept = 4
   } else {
     yintercept = 0
   }
-
+  
+  # Plot the features
   plt <- dat |>
     ggplot2::ggplot(ggplot2::aes(
       start = .data$start,
@@ -23,38 +28,43 @@
     ggplot2::geom_hline(yintercept = yintercept) +
     ggplot2::coord_polar(
       start = pi / 4
-      ) +
-
-
+    ) +
+  
     ggrepel::geom_label_repel(
       ggplot2::aes(label = stringr::str_wrap(.data$name, label_wrap)),
       stat = "arrowLabel",
       box.padding = 0.6,
-      size = 3,
+      point.padding = 0.5,
+      size = 4,
       nudge_y = 1,
       segment.curvature = 0.01,
+      max.overlaps = Inf,
+      min.segment.length = 0.8,
       label.r = 0,
       bp = 400
     ) +
+    
     stat_arrow(
       colour = "black",
       bp = bp,
       arrowhead_size = 1
-      ) +
-    ggfittext::geom_fit_text(
-      ggplot2::aes(
-        label = .data$name,
-        y = yintercept
-      ),
-      stat = "arrowLabel",
-      grow = FALSE,
-      size = 10,
-      position = ggplot2::position_dodge2(),
-      min.size = 1,
-      invert = FALSE,
-      flip = FALSE
-
     ) +
+    
+    # ggfittext::geom_fit_text(
+    #   ggplot2::aes(
+    #     label = .data$name,
+    #     y = yintercept
+    #   ),
+    #   stat = "arrowLabel",
+    #   grow = FALSE,
+    #   size = 10,
+    #   position = ggplot2::position_dodge2(),
+    #   min.size = 1,
+    #   invert = FALSE,
+    #   flip = FALSE
+    # 
+    # ) +
+    
     ggplot2::ylim(c(yintercept - 4, NA)) +
     ggplot2::xlim(c(0, bp)) +
     ggplot2::theme_void() +
@@ -62,7 +72,7 @@
     ggplot2::theme(
       legend.position = ""
     )
-
+  
   if (name_supplied) {
     plt <- plt +
       ggplot2::annotate(
@@ -72,10 +82,10 @@
         label = stringr::str_glue("{name}\n{bp} bp")
       )
   }
-
+  
   plt
-
-  }
+  
+}
 
 #' Plot a Plasmid
 #'
@@ -97,22 +107,22 @@ plot_plasmid <- function(plasmid, name = "Plasmid Name", label_wrap = 20) {
   } else {
     cli::cli_abort("Must be either plasmid or data.frame")
   }
-
+  
   if (methods::is(plasmid, "data.frame")) {
     bp <- max(c(features$start, features$end))
   } else {
     bp <- plasmid$length
   }
-
-
+  
+  
   # remove NA values for start and end, need better handling of this
-  fil <- is.na(features$start) | is.na(features$end) | features$type == "gene"
+  fil <- is.na(features$start) | is.na(features$end)
   features <- features[!fil, ]
-
+  
   .plot_plasmid(
     features,
     bp  = bp,
     name = name,
     label_wrap = label_wrap
-    )
+  )
 }
